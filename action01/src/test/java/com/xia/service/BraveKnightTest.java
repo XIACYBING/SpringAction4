@@ -1,8 +1,9 @@
 package com.xia.service;
 
+import com.xia.service.impl.BraveKnight;
+import com.xia.service.impl.RescueDamselQuest;
 import org.junit.Test;
-
-import static org.mockito.Mockito.*;
+import org.mockito.Mockito;
 
 /**
  * @author: wang.yubin
@@ -12,11 +13,19 @@ import static org.mockito.Mockito.*;
 public class BraveKnightTest {
 
     @Test
-    public void KnightShouldEmbarkOnQuest() {
-        Quest mockQuest = mock(Quest.class);
+    public void knightShouldEmbarkOnQuestTest() {
+        Quest mockQuest = Mockito.mock(Quest.class);
         BraveKnight knight = new BraveKnight(mockQuest);
         knight.embarkOnQuest();
-        verify(mockQuest, times(1)).embark();
+        Mockito.verify(mockQuest, Mockito.times(1)).embark();
+    }
+
+    @Test
+    public void braveKnightShouldOnRescueDamsel() {
+        Quest quest = Mockito.mock(RescueDamselQuest.class);
+        BraveKnight braveKnight = new BraveKnight(quest);
+        braveKnight.embarkOnQuest();
+        Mockito.verify(quest, Mockito.times(1)).embark();
     }
 
 }

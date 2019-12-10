@@ -1,4 +1,7 @@
-package com.xia.service;
+package com.xia.service.impl;
+
+import com.xia.service.Knight;
+import com.xia.service.Quest;
 
 /**
  * @author: wang.yubin
@@ -14,6 +17,7 @@ public class BraveKnight implements Knight {
         this.quest = quest;
     }
 
+    @Override
     public void embarkOnQuest() {
         this.quest.embark();
     }

@@ -5,7 +5,6 @@ package com.xia.service;
  * @date: 2019/12/10
  * @description: 任务
  */
-@SuppressWarnings("unused")
 public interface Quest {
 
     /**

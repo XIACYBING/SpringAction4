@@ -1,4 +1,6 @@
-package com.xia.service;
+package com.xia.service.impl;
+
+import com.xia.service.Quest;
 
 /**
  * @author: wang.yubin
@@ -7,6 +9,7 @@ package com.xia.service;
  */
 public class RescueDamselQuest implements Quest {
 
+    @Override
     public void embark() {
         System.out.println("questing...");
     }
