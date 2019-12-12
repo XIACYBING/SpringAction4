@@ -2,14 +2,14 @@ package com.xia.service;
 
 import com.xia.config.CdPlayerConfig;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-import javax.inject.Inject;
 
 /**
  * @author: wang.yubin
@@ -20,23 +20,22 @@ import javax.inject.Inject;
 @ContextConfiguration(classes = CdPlayerConfig.class)
 public class CompactDiscPlayerTest {
 
-    @Autowired
-    private CompactDisc compactDisc;
+    /**
+     * 根据控制台输出的规则类（@Rule用于扩张SystemOutRule）
+     */
+    @Rule
+    public final SystemOutRule systemOutRule = new SystemOutRule();
 
     @Resource
     private CompactDisc sgtPeppers;
 
-    @Inject
-    private CompactDisc injectCd;
-
     @Test
     public void cdPlayerTest() {
-        compactDisc.play();
+        /*enableLog()开启记录控制台输出，输出一般是CRLF，所以需要行尾符\r*/
+        systemOutRule.enableLog();
         sgtPeppers.play();
-        injectCd.play();
-        Assert.assertNotNull("compactDis is null!", compactDisc);
+        Assert.assertEquals("Playing by \r\n", systemOutRule.getLog());
         Assert.assertNotNull("sgtPeppers is null!", sgtPeppers);
-        Assert.assertNotNull("injectCd is null!", injectCd);
     }
 
 }
